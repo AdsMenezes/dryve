@@ -5,7 +5,7 @@ interface IContainerProps {
 }
 
 export const Container = styled.div<IContainerProps>`
-  padding: 31px 0;
+  padding: 24px 0;
   margin-top: 72px;
   margin-left: ${props => (props.active ? `280px` : `94px`)};
   transition: margin-left 0.3s;

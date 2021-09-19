@@ -22,10 +22,10 @@ export default createGlobalStyle`
     --gray-80: #D1D1D1;
     --gray-100: #A3A3A3;
   }
-
   body {
     color: var(--secondary);
-    background-color: var(--gray-70);
+    background-color: var(--gray-40);
+    overflow-y: scroll;
   }
 
   body, input, textarea, select, button {
