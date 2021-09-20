@@ -1,5 +1,7 @@
 import Chart from '../../components/Chart'
+import LeadsByPortal from '../../components/LeadsByPortal'
 import Summary from '../../components/Summary'
+import TestDrives from '../../components/TestDrives'
 
 import { Container, Heading, Content } from './styles'
 
@@ -38,7 +40,18 @@ export default function Dashboard() {
           <div className="col-12 col-xl-8 col-xxl-9">
             <Chart />
           </div>
-          <div className="col-12 col-xl-4 col-xxl-3"></div>
+          <div className="col-12 col-xl-4 col-xxl-3">
+            <LeadsByPortal />
+          </div>
+        </div>
+
+        <div className="row g-4">
+          <div className="col-12 col-md-6">
+            <TestDrives type="losers" />
+          </div>
+          <div className="col-12 col-md-6">
+            <TestDrives type="ofTheDay" />
+          </div>
         </div>
       </Content>
     </Container>

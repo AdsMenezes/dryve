@@ -16,6 +16,17 @@ export const Title = styled.h3`
   border-bottom: 1px solid var(--gray-70);
 `
 
+export const Scroll = styled.div`
+  padding: 0 16px;
+`
+
+export const TrackVertical = styled.div`
+  border-radius: 5rem;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+`
+
 export const Content = styled.div`
   padding: 16px;
   flex-grow: 1;
