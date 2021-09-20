@@ -2,7 +2,7 @@ import { Container, Title, Content } from './styles'
 
 interface ICardProps {
   title?: string
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 export default function Card({ title, children }: ICardProps) {

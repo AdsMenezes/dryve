@@ -38,6 +38,7 @@ export const Content = styled.div`
       height: 64px;
       padding: 16px;
       transition: background-color 0.3s;
+      cursor: pointer;
     }
     tbody tr:hover td {
       background-color: var(--gray-40);

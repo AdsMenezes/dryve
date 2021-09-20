@@ -1,12 +1,17 @@
-import { useMemo } from 'react'
+import { useMemo, useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+
+import api from '../../../services/api'
 
 import Button from '../../../components/Button'
-import Card from '../../../components/Card'
 import Input from '../../../components/Input'
 import Radio from '../../../components/Radio'
 import Select from '../../../components/Select'
+import Adverts from './Adverts'
+import IntentionToSell from './IntentionToSell'
+import Opportunities from './Opportunities'
+import PurchaseIntent from './PurchaseIntent'
 
 import stateJSON from './state.json'
 
@@ -43,8 +48,20 @@ interface IContactFormData {
   digit: string
 }
 
+interface IContactsEditParams {
+  id: string
+}
+
 export default function ContactsEdit() {
-  const { register, handleSubmit, getValues, watch } = useForm()
+  const { id } = useParams<IContactsEditParams>()
+  const { register, handleSubmit, getValues, watch, reset } = useForm()
+
+  useEffect(() => {
+    api.get(`/contacts/${id}`).then(response => {
+      reset(response.data[0])
+      reset(response.data[0])
+    })
+  }, [])
 
   const handleSubmitContact: SubmitHandler<IContactFormData> = async event => {
     console.log(event)
@@ -200,7 +217,12 @@ export default function ContactsEdit() {
                     </div>
 
                     <div className="col-md-9">
-                      <Input type="text" label="Endereço" />
+                      <Input
+                        type="text"
+                        label="Endereço"
+                        required
+                        {...register('address')}
+                      />
                     </div>
 
                     <div className="col-md-3">
@@ -256,10 +278,7 @@ export default function ContactsEdit() {
                     <div className="col-md-12">
                       <Select
                         label="Banco"
-                        options={[
-                          { value: 'current', label: 'Corrente' },
-                          { value: 'savings', label: 'Poupança' },
-                        ]}
+                        options={stateJSON.banks}
                         required
                         {...register('bank')}
                       />
@@ -281,7 +300,7 @@ export default function ContactsEdit() {
                       <Input
                         type="text"
                         label="Agência"
-                        mask="99999"
+                        mask="9999-9"
                         required
                         {...register('agency')}
                       />
@@ -291,7 +310,7 @@ export default function ContactsEdit() {
                       <Input
                         type="text"
                         label="Conta"
-                        mask="99999"
+                        mask="9999999"
                         required
                         {...register('account')}
                       />
@@ -301,7 +320,7 @@ export default function ContactsEdit() {
                       <Input
                         type="text"
                         label="Dígito"
-                        mask="99999"
+                        mask="9"
                         required
                         {...register('digit')}
                       />
@@ -329,16 +348,16 @@ export default function ContactsEdit() {
           <div className="col-md-6">
             <div className="row g-3">
               <div className="col-12">
-                <Card title="Inteção de compra">Content</Card>
+                <PurchaseIntent />
               </div>
               <div className="col-12">
-                <Card title="Intenção de venda">Content</Card>
+                <IntentionToSell />
               </div>
               <div className="col-12">
-                <Card title="Anúncios">Content</Card>
+                <Adverts />
               </div>
               <div className="col-12">
-                <Card title="Oportunidades">Content</Card>
+                <Opportunities />
               </div>
             </div>
           </div>
