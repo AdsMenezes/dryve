@@ -10,7 +10,7 @@ export default function TestDrives({ type }: ITestDrivesProps) {
     <Container>
       <Card
         title={`Test-drives ${type === 'losers' ? 'vencidos' : 'do dia'}`}
-        scroll
+        isScroll
       >
         <Item>
           <ItemImage src="https://m.atcdn.co.uk/vms/media/w300/f091a007b2a84bb3a3fe5c8cb1b5b739.jpg" />

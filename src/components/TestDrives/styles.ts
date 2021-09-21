@@ -9,6 +9,7 @@ export const Container = styled.div`
     height: 344px;
   }
 `
+
 export const Item = styled.div`
   font-size: 12px;
   letter-spacing: -0.025em;
@@ -33,7 +34,7 @@ export const Item = styled.div`
     }
   }
   & + div {
-    border-top: 1px solid #efefef;
+    border-top: 1px solid var(--gray-60);
   }
 `
 

@@ -13,7 +13,6 @@ interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
 }
 
-// eslint-disable-next-line
 const InputBase: ForwardRefRenderFunction<any, IInputProps> = (
   { label, icon, mask, ...rest },
   ref
@@ -25,7 +24,7 @@ const InputBase: ForwardRefRenderFunction<any, IInputProps> = (
       {mask ? (
         <InputMask mask={mask} maskChar={null} ref={ref} {...rest} />
       ) : (
-        <input {...rest} ref={ref} />
+        <input ref={ref} {...rest} />
       )}
 
       {icon && <Icon className={`icon-${icon}`} />}

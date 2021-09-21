@@ -9,7 +9,7 @@ export const Item = styled.div`
   display: flex;
   padding: 8px 0;
   & + div {
-    border-top: 1px solid #efefef;
+    border-top: 1px solid var(--gray-60);
   }
 `
 

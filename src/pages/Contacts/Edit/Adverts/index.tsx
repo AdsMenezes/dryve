@@ -1,5 +1,10 @@
-import { Container } from './styles'
+import Card from '../../../../components/Card'
 
 export default function Adverts() {
-  return <Container title="Anúncios"></Container>
+  return (
+    <Card
+      title="Anúncios"
+      noContentLabel="Este contato não possui anúncios vinculados."
+    />
+  )
 }

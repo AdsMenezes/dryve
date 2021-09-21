@@ -4,7 +4,7 @@ import { Container, Item, ItemImageBox, ItemImage, ItemContent } from './styles'
 export default function LeadsByPortal() {
   return (
     <Container>
-      <Card title="Leads por portal (últimos 30 dias)" scroll>
+      <Card title="Leads por portal (últimos 30 dias)" isScroll>
         <Item>
           <ItemImageBox>
             <ItemImage src="https://static.bn-static.com/img-49626/olx-share.jpg" />
