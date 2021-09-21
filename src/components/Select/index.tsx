@@ -8,7 +8,7 @@ import { Container, Label, Icon } from './styles'
 
 interface IOption {
   value: string | number
-  label: string
+  label: string | number
 }
 interface ISelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: string

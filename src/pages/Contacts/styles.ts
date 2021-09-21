@@ -65,4 +65,7 @@ export const NameInitials = styled.div`
 export const TableFooter = styled.div`
   border-top: 2px solid var(--gray-70);
   padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `

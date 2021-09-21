@@ -14,6 +14,7 @@ import {
   NameInitials,
   TableFooter,
 } from './styles'
+import PerPage from '../../components/PerPage'
 
 interface IContact {
   id: number
@@ -31,7 +32,7 @@ export default function Contacts() {
   const [contacts, setContacts] = useState([] as IContact[])
   const [totalCount, setTotalCount] = useState(0)
   const [page, setPage] = useState(1)
-  const [perPage] = useState(8)
+  const [perPage, setPerPage] = useState(8)
   const router = useHistory()
 
   useEffect(() => {
@@ -118,6 +119,11 @@ export default function Contacts() {
             registersPerPage={perPage}
             currentPage={page}
             onPageChange={setPage}
+          />
+          <PerPage
+            totalCountOfRegisters={totalCount}
+            registersPerPage={perPage}
+            onPerPageChange={setPerPage}
           />
         </TableFooter>
       </Content>
