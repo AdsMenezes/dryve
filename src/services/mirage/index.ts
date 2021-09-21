@@ -149,6 +149,8 @@ export default function makeServer() {
 
         return schema.where('contact', { id }).models
       })
+
+      this.passthrough('http://www.mocky.io/v2/**')
     },
   })
 

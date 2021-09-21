@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+
 import Chart from '../../components/Chart'
 import LeadsByPortal from '../../components/LeadsByPortal'
 import Summary from '../../components/Summary'
@@ -5,7 +7,29 @@ import TestDrives from '../../components/TestDrives'
 
 import { Container, Heading, Content } from './styles'
 
+interface ICar {
+  mileage: number
+  model_year: number
+  name: string
+  fuel_type: string
+  version_name: string
+  image: string
+  ad_selling_price: number
+  model_name: string
+  manufacturing_year: number
+}
+
 export default function Dashboard() {
+  const [car, setCar] = useState([] as ICar[])
+
+  useEffect(() => {
+    /* MirageJS was giving problem with axios, provisionally I will use fetch until I found the problem. */
+    fetch('http://www.mocky.io/v2/5eb553df31000060006994a8')
+      .then(response => response.json())
+      .then(response => setCar(response))
+      .catch(err => console.error(err))
+  }, [])
+
   return (
     <Container>
       <Heading>
@@ -46,11 +70,11 @@ export default function Dashboard() {
         </div>
 
         <div className="row g-4">
-          <div className="col-12 col-md-6">
-            <TestDrives type="losers" />
+          <div className="col-12 col-xl-6">
+            <TestDrives type="losers" data={car} />
           </div>
-          <div className="col-12 col-md-6">
-            <TestDrives type="ofTheDay" />
+          <div className="col-12 col-xl-6">
+            <TestDrives type="ofTheDay" data={car} />
           </div>
         </div>
       </Content>

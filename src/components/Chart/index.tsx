@@ -90,7 +90,7 @@ export default function Chart() {
 
   return (
     <Card title="Leads (últimos 30 dias)">
-      <Line data={data} options={options} height={70} />
+      <Line data={data} options={options} height={65} />
     </Card>
   )
 }

@@ -1,49 +1,71 @@
 import Card from '../Card'
 import { Container, Item, ItemImage, ItemContent, Badge, Time } from './styles'
 
+interface ICar {
+  mileage: number
+  model_year: number
+  name: string
+  fuel_type: string
+  version_name: string
+  image: string
+  ad_selling_price: number
+  model_name: string
+  manufacturing_year: number
+}
 interface ITestDrivesProps {
   type: 'losers' | 'ofTheDay'
+  data: ICar[]
 }
 
-export default function TestDrives({ type }: ITestDrivesProps) {
+export default function TestDrives({ type, data }: ITestDrivesProps) {
   return (
     <Container>
       <Card
         title={`Test-drives ${type === 'losers' ? 'vencidos' : 'do dia'}`}
         isScroll
       >
-        <Item>
-          <ItemImage src="https://m.atcdn.co.uk/vms/media/w300/f091a007b2a84bb3a3fe5c8cb1b5b739.jpg" />
-          <ItemContent>
-            <div>
-              <h3>HYUNDAI HB20</h3>
-              <span className="text-uppercase">COMFORT 1.0 12V FLEX</span>
-              <ul>
-                <li>2016/2016</li>
-                <li>Etanol/Gasolina</li>
-              </ul>
-              <ul>
-                <li>93.385 km</li>
-                <li>
-                  <span className="price">R$ 36.800</span>
-                </li>
-              </ul>
-            </div>
-            <div>
-              {type === 'losers' ? (
-                <>
-                  <Badge color="warning">Vencido</Badge>
-                  <Time>Há 6 horas</Time>
-                </>
-              ) : (
-                <>
-                  <Badge color="info">Agendado</Badge>
-                  <Time>Seg, 21/Dez às 16:00</Time>
-                </>
-              )}
-            </div>
-          </ItemContent>
-        </Item>
+        {data.length !== 0 &&
+          data.map(car => (
+            <Item>
+              <ItemImage src={car.image} />
+              <ItemContent>
+                <div>
+                  <h3>{car.name}</h3>
+                  <span className="text-uppercase">{car.version_name}</span>
+                  <ul>
+                    <li>
+                      {car.model_year}/{car.manufacturing_year}
+                    </li>
+                    <li>{car.fuel_type}</li>
+                  </ul>
+                  <ul>
+                    <li>{(car.mileage / 1000).toFixed(3)} km</li>
+                    <li>
+                      <span className="price">
+                        {new Intl.NumberFormat('pt-BR', {
+                          style: 'currency',
+                          currency: 'BRL',
+                        }).format(car.ad_selling_price)}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  {type === 'losers' ? (
+                    <>
+                      <Badge color="warning">Vencido</Badge>
+                      <Time>Há 6 horas</Time>
+                    </>
+                  ) : (
+                    <>
+                      <Badge color="info">Agendado</Badge>
+                      <Time>Seg, 21/Dez às 16:00</Time>
+                    </>
+                  )}
+                </div>
+              </ItemContent>
+            </Item>
+          ))}
       </Card>
     </Container>
   )

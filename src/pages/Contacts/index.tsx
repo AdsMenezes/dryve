@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import api from '../../services/api'
+import { api } from '../../services/api'
 
 import Button from '../../components/Button'
 import Input from '../../components/Input'

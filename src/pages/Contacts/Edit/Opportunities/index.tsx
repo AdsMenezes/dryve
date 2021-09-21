@@ -1,7 +1,12 @@
 import Card from '../../../../components/Card'
 import { Item, ItemImageBox, ItemImagePlatform, ItemImageCar } from './styles'
 
-export default function Opportunities() {
+interface IOpportunitiesProps {
+  name: string
+  surname: string
+}
+
+export default function Opportunities({ name, surname }: IOpportunitiesProps) {
   return (
     <Card title="Oportunidades">
       <div className="row">
@@ -9,7 +14,9 @@ export default function Opportunities() {
           <Item>
             <div>
               <span>
-                <strong>Pedro Gandra de Carvalho</strong>
+                <strong>
+                  {name} {surname}
+                </strong>
               </span>
               <span>
                 <strong>Valor:</strong> R$ 30.900

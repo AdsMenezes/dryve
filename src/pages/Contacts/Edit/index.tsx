@@ -1,8 +1,8 @@
-import { useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Link, useParams } from 'react-router-dom'
 
-import api from '../../../services/api'
+import { api } from '../../../services/api'
 
 import Button from '../../../components/Button'
 import Input from '../../../components/Input'
@@ -46,14 +46,20 @@ interface IContactsEditParams {
   id: string
 }
 
+interface IContact {
+  name: string
+  surname: string
+}
+
 export default function ContactsEdit() {
+  const [contact, setContact] = useState({} as IContact)
   const { id } = useParams<IContactsEditParams>()
   const { register, handleSubmit, getValues, watch, reset } = useForm()
 
   useEffect(() => {
     api.get(`/contacts/${id}`).then(response => {
       reset(response.data[0])
-      reset(response.data[0])
+      setContact(response.data[0])
     })
   }, [])
 
@@ -350,7 +356,7 @@ export default function ContactsEdit() {
                 <Adverts />
               </div>
               <div className="col-12">
-                <Opportunities />
+                <Opportunities name={contact.name} surname={contact.surname} />
               </div>
             </div>
           </div>
